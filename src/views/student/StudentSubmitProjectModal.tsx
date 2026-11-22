@@ -1,28 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useData } from '../../context/DataContext';
 import { useAuthRole } from '../../context/AuthRoleContext';
-import { X, UploadCloud, CheckCircle2, Terminal, Code2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, UploadCloud, CheckCircle2, Terminal, Code2, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface StudentSubmitProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialChallengeId?: string;
 }
 
-export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps> = ({ isOpen, onClose }) => {
+export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps> = ({ 
+  isOpen, 
+  onClose,
+  initialChallengeId 
+}) => {
   const { submitProject, challenges } = useData();
   const { currentUser } = useAuthRole();
 
   const [title, setTitle] = useState('');
   const [repoUrl, setRepoUrl] = useState('');
   const [liveUrl, setLiveUrl] = useState('');
-  const [challengeId, setChallengeId] = useState('');
+  const [challengeId, setChallengeId] = useState(initialChallengeId || '');
   const [skillTagsStr, setSkillTagsStr] = useState('Distributed Systems, Go, Concurrency');
   const [description, setDescription] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [step, setStep] = useState<'form' | 'running_tests' | 'success'>('form');
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (initialChallengeId) {
+      setChallengeId(initialChallengeId);
+      const ch = challenges.find(c => c.id === initialChallengeId);
+      if (ch) {
+        setTitle(ch.title);
+        setDescription(ch.description);
+        setSkillTagsStr(ch.skillsGained.join(', '));
+      }
+    }
+  }, [initialChallengeId, challenges]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,8 +71,8 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
 
       try {
         confetti({
-          particleCount: 100,
-          spread: 70,
+          particleCount: 110,
+          spread: 75,
           origin: { y: 0.6 }
         });
       } catch (err) {
@@ -75,191 +91,169 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs select-none">
-      <div className="bg-[#F8F3E9] dark:bg-[#191A23] border-4 border-[#191A23] dark:border-[#FFD966] shadow-[8px_8px_0px_#191A23] dark:shadow-[8px_8px_0px_#FFD966] max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
-        <button
-          onClick={handleResetAndClose}
-          className="absolute top-4 right-4 p-1.5 border-2 border-[#191A23] bg-white dark:bg-[#282B3A] text-[#191A23] dark:text-white hover:bg-red-500 hover:text-white transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs select-none">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 10 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="bg-[#F8F3E9] dark:bg-[#191A23] border-4 border-[#191A23] dark:border-[#FFD966] shadow-[8px_8px_0px_#191A23] dark:shadow-[8px_8px_0px_#FFD966] max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto"
+          >
+            <button
+              onClick={handleResetAndClose}
+              className="absolute top-4 right-4 p-1.5 border-2 border-[#191A23] bg-white dark:bg-[#282B3A] text-[#191A23] dark:text-white hover:bg-red-500 hover:text-white transition-colors cursor-pointer"
+            >
+              <X className="w-5 h-5" />
+            </button>
 
-        {step === 'form' && (
-          <div>
-            <div className="border-b-2 border-[#191A23] pb-3 mb-5">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#3657F0] dark:text-[#FFD966]">
-                EVIDENCE SUBMISSION PORTAL
-              </span>
-              <h2 className="font-display font-black text-2xl text-[#191A23] dark:text-white mt-1">
-                Submit Practical Project for Verification
-              </h2>
-              <p className="text-xs text-stone-600 dark:text-stone-400 font-sans mt-1">
-                Submissions trigger automated static analysis and dynamic assertion suites before being routed to your assigned mentor.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {step === 'form' && (
               <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                  Project Title *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g., RaftKV: Resilient Consensus Storage Engine"
-                  value={title}
-                  onChange={e => setTitle(e.target.value)}
-                  className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                    Repository URL (Git) *
-                  </label>
-                  <input
-                    type="url"
-                    required
-                    placeholder="https://github.com/..."
-                    value={repoUrl}
-                    onChange={e => setRepoUrl(e.target.value)}
-                    className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
-                  />
+                <div className="border-b-2 border-[#191A23] pb-3 mb-5">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#3657F0] dark:text-[#FFD966]">
+                    EVIDENCE SUBMISSION PORTAL
+                  </span>
+                  <h2 className="font-display font-black text-2xl text-[#191A23] dark:text-white mt-1">
+                    Submit Practical Project for Verification
+                  </h2>
+                  <p className="text-xs text-stone-600 dark:text-stone-400 font-sans mt-1">
+                    Submissions trigger automated static analysis and dynamic assertion suites before being routed to your assigned mentor.
+                  </p>
                 </div>
-                <div>
-                  <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                    Live Demo Link (Optional)
-                  </label>
-                  <input
-                    type="url"
-                    placeholder="https://myproject.demo"
-                    value={liveUrl}
-                    onChange={e => setLiveUrl(e.target.value)}
-                    className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
-                  />
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
+                      Project Title *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g., RaftKV: Resilient Consensus Storage Engine"
+                      value={title}
+                      onChange={e => setTitle(e.target.value)}
+                      className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
+                        Repository URL (Git) *
+                      </label>
+                      <input
+                        type="url"
+                        required
+                        placeholder="https://github.com/org/repo"
+                        value={repoUrl}
+                        onChange={e => setRepoUrl(e.target.value)}
+                        className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-mono focus:outline-hidden focus:border-[#3657F0]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
+                        Linked Challenge (Optional)
+                      </label>
+                      <select
+                        value={challengeId}
+                        onChange={e => setChallengeId(e.target.value)}
+                        className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-mono focus:outline-hidden focus:border-[#3657F0]"
+                      >
+                        <option value="">Independent Project (No Challenge)</option>
+                        {challenges.map(c => (
+                          <option key={c.id} value={c.id}>
+                            {c.title} ({c.difficulty})
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
+                      Skill Tags (Comma-Separated)
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Distributed Systems, Go, Concurrency"
+                      value={skillTagsStr}
+                      onChange={e => setSkillTagsStr(e.target.value)}
+                      className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-mono focus:outline-hidden focus:border-[#3657F0]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
+                      Architecture &amp; Implementation Rationale
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="Explain your approach, concurrency model, memory trade-offs, and test coverage strategy..."
+                      value={description}
+                      onChange={e => setDescription(e.target.value)}
+                      className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
+                    />
+                  </div>
+
+                  <div className="pt-2 flex justify-end gap-3">
+                    <button
+                      type="button"
+                      onClick={handleResetAndClose}
+                      className="px-4 py-2 border-2 border-[#191A23] font-mono text-xs font-bold uppercase hover:bg-stone-200 cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-6 py-2.5 bg-[#3657F0] text-white border-2 border-[#191A23] font-mono text-xs font-bold uppercase tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
+                    >
+                      <UploadCloud className="w-4 h-4 text-[#FFD966]" />
+                      <span>{isSubmitting ? 'Spinning Up Sandbox...' : 'Run Automated Suite & Submit'}</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {step === 'running_tests' && (
+              <div className="py-12 text-center space-y-4">
+                <div className="w-14 h-14 border-4 border-[#3657F0] border-t-transparent rounded-full animate-spin mx-auto"></div>
+                <h3 className="font-display font-black text-2xl text-[#191A23] dark:text-white">
+                  Executing Automated Benchmark Suite
+                </h3>
+                <p className="font-mono text-xs text-stone-600 dark:text-stone-300 max-w-md mx-auto">
+                  Isolated sandbox container running 48 assertions &bull; AST complexity check &bull; Memory leak analysis &bull; Anti-plagiarism verification
+                </p>
+              </div>
+            )}
+
+            {step === 'success' && (
+              <div className="py-8 text-center space-y-4">
+                <div className="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto border-2 border-[#191A23] shadow-[3px_3px_0px_#191A23]">
+                  <CheckCircle2 className="w-10 h-10" />
+                </div>
+                <h3 className="font-display font-black text-2xl text-[#191A23] dark:text-white">
+                  Automated Evaluation Complete!
+                </h3>
+                <p className="font-sans text-xs text-stone-600 dark:text-stone-300 max-w-md mx-auto">
+                  Your project passed automated tests with <strong>98.4% coverage</strong>. It has been routed to <strong>Dr. Elena Rostova</strong> for Tier 3 rubric evaluation and cryptographic stamp minting.
+                </p>
+                <div className="pt-2">
+                  <button
+                    onClick={handleResetAndClose}
+                    className="px-6 py-2.5 bg-[#FF7138] text-white border-2 border-[#191A23] font-mono text-xs font-bold uppercase tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
+                  >
+                    View in Submission Pipeline
+                  </button>
                 </div>
               </div>
-
-              <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                  Link to Official Challenge (Optional)
-                </label>
-                <select
-                  value={challengeId}
-                  onChange={e => setChallengeId(e.target.value)}
-                  className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
-                >
-                  <option value="">Independent Capstone / Free Project</option>
-                  {challenges.map(c => (
-                    <option key={c.id} value={c.id}>
-                      {c.title} ({c.difficulty})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                  Claimed Skill Tags (comma-separated) *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Distributed Systems, Go, Concurrency"
-                  value={skillTagsStr}
-                  onChange={e => setSkillTagsStr(e.target.value)}
-                  className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-mono focus:outline-hidden focus:border-[#3657F0]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                  Architecture & Implementation Overview *
-                </label>
-                <textarea
-                  rows={3}
-                  required
-                  placeholder="Describe your design choices, concurrency primitives, error handling invariants, and testing strategy..."
-                  value={description}
-                  onChange={e => setDescription(e.target.value)}
-                  className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-sans focus:outline-hidden focus:border-[#3657F0]"
-                />
-              </div>
-
-              <div className="pt-2 flex justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={handleResetAndClose}
-                  className="px-4 py-2 border-2 border-[#191A23] font-mono text-xs font-bold uppercase bg-stone-200 text-stone-800"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="px-6 py-2 border-2 border-[#191A23] font-mono text-xs font-bold uppercase bg-[#3657F0] text-white shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2"
-                >
-                  <UploadCloud className="w-4 h-4" />
-                  <span>Initiate Verification Pipeline</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-
-        {step === 'running_tests' && (
-          <div className="py-12 text-center space-y-4">
-            <div className="w-16 h-16 border-4 border-[#3657F0] border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <div className="space-y-1">
-              <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                Executing Automated Assertion Harness...
-              </h3>
-              <p className="font-mono text-xs text-[#3657F0] dark:text-[#FFD966]">
-                Spinning up isolated sandbox runner • AST security audit • 25 unit assertion checks
-              </p>
-            </div>
-            <div className="bg-[#191A23] text-left p-4 font-mono text-xs text-emerald-400 max-w-md mx-auto border-2 border-[#191A23] shadow-[3px_3px_0px_#FFD966]">
-              <div className="flex items-center gap-2 border-b border-stone-700 pb-1 mb-2 text-stone-400">
-                <Terminal className="w-3.5 h-3.5" />
-                <span>RUNNER TELEMETRY LOG</span>
-              </div>
-              <div>&gt; Cloning target repository... [OK]</div>
-              <div>&gt; Static complexity check: Cyclomatic Complexity = 4 (LOW)</div>
-              <div>&gt; Executing concurrency fuzz suite... PASS (24/25)</div>
-              <div>&gt; Hashing commit tree for immutable ledger...</div>
-            </div>
-          </div>
-        )}
-
-        {step === 'success' && (
-          <div className="py-8 text-center space-y-4">
-            <div className="w-16 h-16 bg-[#FFD966] border-2 border-[#191A23] shadow-[4px_4px_0px_#191A23] flex items-center justify-center mx-auto text-[#191A23]">
-              <CheckCircle2 className="w-8 h-8 text-[#3657F0]" />
-            </div>
-            <div className="space-y-1">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-600">
-                STAGE 2 COMPLETED: EVIDENCE SUBMITTED
-              </span>
-              <h3 className="font-display font-black text-2xl text-[#191A23] dark:text-white">
-                Automated Harness Passed!
-              </h3>
-              <p className="text-xs font-sans text-stone-600 dark:text-stone-300 max-w-md mx-auto">
-                Your submission scored <strong>91.2% test coverage</strong>. It has been stamped and placed in Dr. Elena Rostova's mentor verification queue.
-              </p>
-            </div>
-
-            <div className="pt-4 flex justify-center gap-3 font-mono text-xs font-bold">
-              <button
-                onClick={handleResetAndClose}
-                className="px-6 py-2.5 bg-[#3657F0] text-white border-2 border-[#191A23] shadow-[3px_3px_0px_#191A23]"
-              >
-                View in Submission Queue
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
   );
 };

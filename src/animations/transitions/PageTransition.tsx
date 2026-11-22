@@ -11,10 +11,10 @@ export const PageTransition: React.FC<PageTransitionProps> = ({ children, pageKe
     <AnimatePresence mode="wait">
       <motion.div
         key={pageKey}
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -12 }}
-        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="w-full"
       >
         {children}

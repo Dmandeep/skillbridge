@@ -1,5 +1,8 @@
 import React from 'react';
-import { Users, ShieldCheck, Clock, Award } from 'lucide-react';
+import { ScrollReveal } from '../../animations/scrolling/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '../../animations/scrolling/StaggerContainer';
+import { TiltCard } from '../../animations/interactions/TiltCard';
+import { Users, ShieldCheck, Clock, Award, Sparkles } from 'lucide-react';
 
 export const OrgMentorsView: React.FC = () => {
   const mentors = [
@@ -27,61 +30,66 @@ export const OrgMentorsView: React.FC = () => {
 
   return (
     <div className="space-y-6 select-none">
-      <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966] p-6">
-        <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#FF7138]">
-          ACADEMIC FACULTY DIRECTORY
-        </span>
-        <h1 className="font-display font-black text-3xl text-[#191A23] dark:text-white mt-1">
-          Faculty Mentors &amp; Lead Evaluators ({mentors.length})
-        </h1>
-        <p className="text-xs text-stone-600 dark:text-stone-300 font-sans mt-1">
-          Accredited faculty authorized to execute human-in-the-loop rubric reviews and issue cryptographic seals.
-        </p>
-      </div>
+      <ScrollReveal direction="down">
+        <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] p-6 sm:p-8">
+          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#FF7138]">
+            ACADEMIC FACULTY DIRECTORY
+          </span>
+          <h1 className="font-display font-black text-3xl sm:text-4xl text-[#191A23] dark:text-white mt-1">
+            Faculty Mentors &amp; Lead Evaluators ({mentors.length})
+          </h1>
+          <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-sans mt-1">
+            Accredited faculty authorized to execute human-in-the-loop rubric reviews and issue cryptographic seals.
+          </p>
+        </div>
+      </ScrollReveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {mentors.map(m => (
-          <div
-            key={m.id}
-            className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[4px_4px_0px_#191A23] space-y-4"
-          >
-            <div className="flex items-center gap-4 border-b-2 border-[#191A23] dark:border-stone-700 pb-3">
-              <img
-                src={m.avatar}
-                alt={m.name}
-                className="w-14 h-14 object-cover border-2 border-[#191A23]"
-              />
-              <div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  {m.name}
-                </h3>
-                <span className="font-mono text-xs text-[#3657F0] dark:text-[#FFD966] font-bold">
-                  {m.role}
-                </span>
-              </div>
-            </div>
+          <StaggerItem key={m.id}>
+            <TiltCard tiltAmount={5}>
+              <div
+                className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] space-y-4 h-full"
+              >
+                <div className="flex items-center gap-4 border-b-2 border-[#191A23] dark:border-stone-700 pb-3">
+                  <img
+                    src={m.avatar}
+                    alt={m.name}
+                    className="w-14 h-14 object-cover border-2 border-[#191A23]"
+                  />
+                  <div>
+                    <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
+                      {m.name}
+                    </h3>
+                    <span className="font-mono text-xs text-[#3657F0] dark:text-[#FFD966] font-bold">
+                      {m.role}
+                    </span>
+                  </div>
+                </div>
 
-            <div className="grid grid-cols-2 gap-3 font-mono text-xs">
-              <div className="bg-[#F8F3E9] dark:bg-[#1E202B] p-2.5 border border-stone-300">
-                <span className="text-stone-500 text-[10px] block">ASSIGNED MENTEES</span>
-                <strong className="text-base text-[#191A23] dark:text-white">{m.assignedMentees} Students</strong>
+                <div className="grid grid-cols-2 gap-3 font-mono text-xs">
+                  <div className="bg-[#F8F3E9] dark:bg-[#282B3A] p-3 border border-stone-300 dark:border-stone-700">
+                    <span className="text-[10px] text-stone-500 block uppercase">Mentees</span>
+                    <strong className="text-[#191A23] dark:text-white text-base">{m.assignedMentees} Assigned</strong>
+                  </div>
+                  <div className="bg-[#F8F3E9] dark:bg-[#282B3A] p-3 border border-stone-300 dark:border-stone-700">
+                    <span className="text-[10px] text-stone-500 block uppercase">Seals Minted</span>
+                    <strong className="text-emerald-500 text-base">{m.verifiedSubmissions} Stamped</strong>
+                  </div>
+                  <div className="bg-[#F8F3E9] dark:bg-[#282B3A] p-3 border border-stone-300 dark:border-stone-700">
+                    <span className="text-[10px] text-stone-500 block uppercase">Turnaround</span>
+                    <strong className="text-[#3657F0] text-sm">{m.avgTurnaround}</strong>
+                  </div>
+                  <div className="bg-[#F8F3E9] dark:bg-[#282B3A] p-3 border border-stone-300 dark:border-stone-700">
+                    <span className="text-[10px] text-stone-500 block uppercase">Faculty Rating</span>
+                    <strong className="text-[#FF7138] text-sm">{m.rating}</strong>
+                  </div>
+                </div>
               </div>
-              <div className="bg-[#F8F3E9] dark:bg-[#1E202B] p-2.5 border border-stone-300">
-                <span className="text-stone-500 text-[10px] block">VERIFICATIONS MINTED</span>
-                <strong className="text-base text-emerald-600">{m.verifiedSubmissions}</strong>
-              </div>
-              <div className="bg-[#F8F3E9] dark:bg-[#1E202B] p-2.5 border border-stone-300">
-                <span className="text-stone-500 text-[10px] block">TURNAROUND VELOCITY</span>
-                <strong className="text-base text-[#FF7138]">{m.avgTurnaround}</strong>
-              </div>
-              <div className="bg-[#F8F3E9] dark:bg-[#1E202B] p-2.5 border border-stone-300">
-                <span className="text-stone-500 text-[10px] block">EVALUATOR RATING</span>
-                <strong className="text-base text-[#3657F0]">{m.rating}</strong>
-              </div>
-            </div>
-          </div>
+            </TiltCard>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </div>
   );
 };

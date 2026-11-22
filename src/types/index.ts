@@ -65,6 +65,11 @@ export interface ProjectSubmission {
     securityFlawsDetected: number;
     executionTimeMs: number;
     automatedFeedback: string[];
+    // Compatibility aliases
+    passedAssertions?: number;
+    totalAssertions?: number;
+    coveragePercentage?: number;
+    executionDurationMs?: number;
   };
 
   // Mentor Review & Verification
@@ -72,6 +77,7 @@ export interface ProjectSubmission {
     mentorId: string;
     mentorName: string;
     mentorAvatar: string;
+    mentorTitle?: string;
     reviewedAt: string;
     codeQualityScore: number; // 1-5
     systemDesignScore: number; // 1-5
@@ -79,6 +85,42 @@ export interface ProjectSubmission {
     decision: 'APPROVED_WITH_DISTINCTION' | 'VERIFIED' | 'NEEDS_REVISION' | 'REJECTED';
     detailedComments: string;
     verificationHash: string;
+    // Compatibility aliases
+    writtenFeedback?: string;
+    rubricScores?: {
+      codeQuality?: number;
+      systemDesign?: number;
+      problemSolving?: number;
+      quality?: number;
+      design?: number;
+    };
+    overallScore?: number;
+    comments?: string;
+  };
+
+  // Compatibility alias
+  mentorFeedback?: {
+    mentorId?: string;
+    mentorName?: string;
+    mentorAvatar?: string;
+    mentorTitle?: string;
+    reviewedAt?: string;
+    codeQualityScore?: number;
+    systemDesignScore?: number;
+    problemSolvingScore?: number;
+    decision?: string;
+    detailedComments?: string;
+    verificationHash?: string;
+    writtenFeedback?: string;
+    comments?: string;
+    overallScore?: number;
+    rubricScores?: {
+      codeQuality?: number;
+      systemDesign?: number;
+      problemSolving?: number;
+      quality?: number;
+      design?: number;
+    };
   };
 }
 

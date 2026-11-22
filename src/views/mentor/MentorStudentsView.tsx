@@ -1,12 +1,16 @@
 import React from 'react';
 import { useData } from '../../context/DataContext';
+import { ScrollReveal } from '../../animations/scrolling/ScrollReveal';
+import { StaggerContainer, StaggerItem } from '../../animations/scrolling/StaggerContainer';
+import { TiltCard } from '../../animations/interactions/TiltCard';
 import { 
   Users, 
   Award, 
   CheckCircle2, 
   FolderGit2, 
   ExternalLink,
-  Search
+  Search,
+  Sparkles 
 } from 'lucide-react';
 
 export const MentorStudentsView: React.FC = () => {
@@ -45,68 +49,76 @@ export const MentorStudentsView: React.FC = () => {
 
   return (
     <div className="space-y-6 select-none">
-      <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966] p-6 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#FF7138]">
-            FACULTY ADVISEES
-          </span>
-          <h1 className="font-display font-black text-3xl text-[#191A23] dark:text-white mt-1">
-            Assigned Student Mentees ({students.length})
-          </h1>
-          <p className="text-xs text-stone-600 dark:text-stone-300 font-sans mt-1">
-            Roster of students under your direct verification and evaluation purview.
-          </p>
+      <ScrollReveal direction="down">
+        <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#FF7138]">
+              FACULTY ADVISEES
+            </span>
+            <h1 className="font-display font-black text-3xl sm:text-4xl text-[#191A23] dark:text-white mt-1">
+              Assigned Student Mentees ({students.length})
+            </h1>
+            <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-sans mt-1">
+              Roster of students under your direct verification and evaluation purview.
+            </p>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Advisee Cards Grid */}
+      <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {students.map(std => (
-          <div
-            key={std.id}
-            className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] p-5 shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966] flex flex-col justify-between space-y-4"
-          >
-            <div>
-              <div className="flex items-center gap-3 border-b-2 border-[#191A23] dark:border-stone-700 pb-3 mb-3">
-                <img
-                  src={std.avatar}
-                  alt={std.name}
-                  className="w-12 h-12 object-cover border-2 border-[#191A23]"
-                />
+          <StaggerItem key={std.id}>
+            <TiltCard tiltAmount={6}>
+              <div
+                className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966] p-6 space-y-4 h-full flex flex-col justify-between transition-all hover:-translate-y-1"
+              >
                 <div>
-                  <h3 className="font-display font-bold text-lg text-[#191A23] dark:text-white">
-                    {std.name}
-                  </h3>
-                  <span className="font-mono text-xs text-[#3657F0] dark:text-[#FFD966] font-bold">
-                    {std.track}
+                  <div className="flex items-center gap-3 border-b-2 border-stone-200 dark:border-stone-700 pb-4 mb-3">
+                    <img
+                      src={std.avatar}
+                      alt={std.name}
+                      className="w-14 h-14 object-cover border-2 border-[#191A23]"
+                    />
+                    <div>
+                      <strong className="text-base font-display font-black block text-[#191A23] dark:text-white">
+                        {std.name}
+                      </strong>
+                      <span className="font-mono text-xs text-[#3657F0] dark:text-[#FFD966]">
+                        {std.track}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 font-mono text-xs">
+                    <div className="flex items-center justify-between">
+                      <span className="text-stone-500">Verified Skills:</span>
+                      <strong className="text-emerald-500 font-bold">{std.verifiedCount} Tier 3</strong>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-stone-500">Pending Submissions:</span>
+                      <strong className="text-[#FF7138] font-bold">{std.pendingCount} in queue</strong>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-stone-500">Avg Test Coverage:</span>
+                      <strong className="text-[#191A23] dark:text-white font-bold">{std.avgCoverage}</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-stone-200 dark:border-stone-700 flex items-center justify-between">
+                  <span className="bg-[#FFD966] text-[#191A23] font-mono text-[10px] font-bold px-2 py-0.5 border border-[#191A23]">
+                    {std.status}
+                  </span>
+                  <span className="font-mono text-xs text-[#3657F0] dark:text-[#FFD966] font-bold hover:underline cursor-pointer">
+                    Inspect Portfolio &rarr;
                   </span>
                 </div>
               </div>
-
-              <div className="font-mono text-xs space-y-2 text-stone-700 dark:text-stone-300">
-                <div className="flex justify-between">
-                  <span className="text-stone-500">Verified Competencies:</span>
-                  <strong className="text-emerald-600">{std.verifiedCount} Skills</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-stone-500">Submissions In Queue:</span>
-                  <strong className="text-[#FF7138]">{std.pendingCount}</strong>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-stone-500">Avg Test Harness:</span>
-                  <strong>{std.avgCoverage}</strong>
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={() => alert(`Opening student dossier for ${std.name}`)}
-              className="w-full py-2 bg-[#F8F3E9] dark:bg-[#282B3A] text-[#191A23] dark:text-white border-2 border-[#191A23] font-mono text-xs font-bold uppercase hover:bg-[#3657F0] hover:text-white transition-colors"
-            >
-              View Advisee Dossier
-            </button>
-          </div>
+            </TiltCard>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerContainer>
     </div>
   );
 };
