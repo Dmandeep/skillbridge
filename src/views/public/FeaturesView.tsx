@@ -7,37 +7,32 @@ import {
   BookOpenCheck, 
   Building2, 
   Briefcase, 
-  ShieldCheck, 
   Terminal, 
-  KeyRound, 
-  QrCode, 
-  ScrollText, 
-  Sliders,
   Sparkles 
 } from 'lucide-react';
 
 export const FeaturesView: React.FC = () => {
   return (
-    <div className="space-y-12 select-none max-w-6xl mx-auto pb-16">
+    <div className="space-y-12 select-none max-w-6xl mx-auto pb-16 px-4">
       {/* Header Banner */}
       <ScrollReveal direction="down">
-        <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] shadow-[6px_6px_0px_#191A23] dark:shadow-[6px_6px_0px_#FFD966] p-8">
+        <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] shadow-[6px_6px_0px_#191A23] dark:shadow-[6px_6px_0px_#FFD966] p-6 sm:p-8">
           <div className="inline-flex items-center gap-2 bg-[#3657F0] text-white px-3 py-1 font-mono text-xs font-bold uppercase border border-[#191A23] mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#FFD966]" />
-            <span>PLATFORM CAPABILITIES</span>
+            <span>PLATFORM FEATURES</span>
           </div>
-          <h1 className="font-display font-black text-4xl sm:text-5xl text-[#191A23] dark:text-white mt-1">
-            Complete Feature Specification Across All 6 Roles
+          <h1 className="font-display font-black text-3xl sm:text-5xl text-[#191A23] dark:text-white mt-1">
+            Features Built for Every Role
           </h1>
           <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-sans mt-2 max-w-2xl leading-relaxed">
-            SkillBridge bridges EdTech and HRTech through rigorous evidence capture, privacy preservation, and role-partitioned workflows.
+            SkillBridge provides simple, practical tools designed specifically for students, teachers, colleges, and hiring teams.
           </p>
         </div>
       </ScrollReveal>
 
-      {/* 6 Role Feature Grid with Stagger & Tilt */}
+      {/* 4 Role Features + Testing Engine */}
       <StaggerContainer staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Student Features */}
+        {/* 1. Student Features */}
         <StaggerItem>
           <TiltCard tiltAmount={5}>
             <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] space-y-3 h-full">
@@ -45,21 +40,24 @@ export const FeaturesView: React.FC = () => {
                 <div className="p-2 bg-[#3657F0] text-white border border-[#191A23]">
                   <GraduationCap className="w-5 h-5 text-[#FFD966]" />
                 </div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  Student &amp; Candidate Suite
-                </h3>
+                <div>
+                  <span className="font-mono text-[10px] text-[#3657F0] dark:text-[#FFD966] font-bold uppercase">FOR LEARNERS</span>
+                  <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
+                    Student Experience
+                  </h3>
+                </div>
               </div>
               <ul className="font-sans text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed pt-1">
-                <li>&bull; <strong>Independent Registration:</strong> Sign up with Google OAuth and submit university affiliation request.</li>
-                <li>&bull; <strong>3-Tier Skill Inventory:</strong> Track competencies from Self-Declared &rarr; Evidence Submitted &rarr; Mentor Verified.</li>
-                <li>&bull; <strong>Verification Passport:</strong> Export verifiable credential JSON and shareable QR code with root hash proof.</li>
-                <li>&bull; <strong>Recruiter Permission Inbox:</strong> Total data sovereignty. Approve, deny, or revoke recruiter access to private code.</li>
+                <li>&bull; <strong>Project Submissions:</strong> Connect GitHub project repositories and practice challenges.</li>
+                <li>&bull; <strong>Instant Test Feedback:</strong> See your automated test results, test pass rates, and code checks right away.</li>
+                <li>&bull; <strong>Skills Passport:</strong> Receive a clear, verified profile showcasing your completed skills and teacher endorsements.</li>
+                <li>&bull; <strong>Privacy Controls:</strong> You choose which recruiters are allowed to view your full project code.</li>
               </ul>
             </div>
           </TiltCard>
         </StaggerItem>
 
-        {/* Mentor Features */}
+        {/* 2. Teacher Features */}
         <StaggerItem>
           <TiltCard tiltAmount={5}>
             <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] space-y-3 h-full">
@@ -67,21 +65,24 @@ export const FeaturesView: React.FC = () => {
                 <div className="p-2 bg-[#FF7138] text-white border border-[#191A23]">
                   <BookOpenCheck className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  Faculty &amp; Mentor Console
-                </h3>
+                <div>
+                  <span className="font-mono text-[10px] text-[#FF7138] font-bold uppercase">FOR EDUCATORS</span>
+                  <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
+                    Teacher &amp; Mentor Hub
+                  </h3>
+                </div>
               </div>
               <ul className="font-sans text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed pt-1">
-                <li>&bull; <strong>Split-Screen Review Desk:</strong> Inspect candidate git commits side-by-side with automated runner telemetry.</li>
-                <li>&bull; <strong>Standardized Rubric Scoring:</strong> Grade Code Quality, System Design, and Problem Solving (1-5 scales).</li>
-                <li>&bull; <strong>Cryptographic Decision Minting:</strong> Mint immutable verification stamps with SHA-256 signatures.</li>
-                <li>&bull; <strong>Mentee Cohort Velocity:</strong> Longitudinal tracking of student progress from beginner to systems master.</li>
+                <li>&bull; <strong>Review Queue:</strong> See student projects waiting for evaluation in one convenient place.</li>
+                <li>&bull; <strong>Code &amp; Test Inspection:</strong> Review student code alongside the automated test results.</li>
+                <li>&bull; <strong>Simple Rubric Grading:</strong> Score code quality, system design, and problem solving from 1 to 5.</li>
+                <li>&bull; <strong>Personal Feedback:</strong> Write constructive guidance to help students improve and succeed.</li>
               </ul>
             </div>
           </TiltCard>
         </StaggerItem>
 
-        {/* Org Admin Features */}
+        {/* 3. College Admin Features */}
         <StaggerItem>
           <TiltCard tiltAmount={5}>
             <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] space-y-3 h-full">
@@ -89,21 +90,24 @@ export const FeaturesView: React.FC = () => {
                 <div className="p-2 bg-[#FFD966] text-[#191A23] border border-[#191A23]">
                   <Building2 className="w-5 h-5 text-[#3657F0]" />
                 </div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  Institution &amp; University Portal
-                </h3>
+                <div>
+                  <span className="font-mono text-[10px] text-stone-600 dark:text-stone-300 font-bold uppercase">FOR INSTITUTIONS</span>
+                  <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
+                    College Administration
+                  </h3>
+                </div>
               </div>
               <ul className="font-sans text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed pt-1">
-                <li>&bull; <strong>Affiliation Request Gate:</strong> Dean review and one-click enrollment of independent student signups.</li>
-                <li>&bull; <strong>Faculty Evaluator Roster:</strong> Manage accredited mentor accounts and department assignments.</li>
-                <li>&bull; <strong>Curriculum Alignment:</strong> Build institution-specific practical challenges linked to accredited courses.</li>
-                <li>&bull; <strong>Cohort Outcome Analytics:</strong> Institutional placement conversion and competency velocity reporting.</li>
+                <li>&bull; <strong>Student Enrollment:</strong> Approve student join requests with one click.</li>
+                <li>&bull; <strong>Faculty Management:</strong> Keep an active roster of participating teachers and departments.</li>
+                <li>&bull; <strong>Course Alignment:</strong> Link practical coding projects to your college syllabus and curriculum.</li>
+                <li>&bull; <strong>Placement Reports:</strong> See real statistics on student completion rates and employer connections.</li>
               </ul>
             </div>
           </TiltCard>
         </StaggerItem>
 
-        {/* Recruiter Features */}
+        {/* 4. Recruiter Features */}
         <StaggerItem>
           <TiltCard tiltAmount={5}>
             <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] space-y-3 h-full">
@@ -111,60 +115,52 @@ export const FeaturesView: React.FC = () => {
                 <div className="p-2 bg-emerald-600 text-white border border-[#191A23]">
                   <Briefcase className="w-5 h-5 text-[#FFD966]" />
                 </div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  Recruiter &amp; Talent Pipeline
-                </h3>
-              </div>
-              <ul className="font-sans text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed pt-1">
-                <li>&bull; <strong>Zero-Keyword Search:</strong> Discover candidates filtered by verified test coverage percentages.</li>
-                <li>&bull; <strong>Consent-Gated Unlocks:</strong> Request candidate permission to inspect raw source code and test logs.</li>
-                <li>&bull; <strong>Candidate Shortlisting:</strong> Save high-signal engineering profiles to dedicated recruiter pipelines.</li>
-                <li>&bull; <strong>Reverse Hiring Direct Connect:</strong> Reach out directly with guaranteed verified competency profiles.</li>
-              </ul>
-            </div>
-          </TiltCard>
-        </StaggerItem>
-
-        {/* Super Admin Features */}
-        <StaggerItem>
-          <TiltCard tiltAmount={5}>
-            <div className="bg-white dark:bg-[#212330] border-3 border-[#191A23] dark:border-[#3B3E54] p-6 shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] space-y-3 h-full">
-              <div className="flex items-center gap-2.5 border-b-2 border-[#191A23] dark:border-stone-700 pb-3">
-                <div className="p-2 bg-[#191A23] text-white border border-[#191A23]">
-                  <ShieldCheck className="w-5 h-5 text-[#FFD966]" />
+                <div>
+                  <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400 font-bold uppercase">FOR HIRING</span>
+                  <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
+                    Recruiter Talent Search
+                  </h3>
                 </div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  Super &amp; Protocol Administration
-                </h3>
               </div>
               <ul className="font-sans text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed pt-1">
-                <li>&bull; <strong>Administrator Appointments:</strong> Elevate operational admins with granular role-based privileges.</li>
-                <li>&bull; <strong>University Accreditation:</strong> Validate and onboard new academic institutional partners.</li>
-                <li>&bull; <strong>Tamper-Evident Audit Ledger:</strong> Real-time streaming log of verification and security events.</li>
-                <li>&bull; <strong>gVisor Sandbox Governance:</strong> Global policy configuration for container execution limits and timeouts.</li>
+                <li>&bull; <strong>Skill-Based Search:</strong> Filter candidates by verified test scores, skills, and teacher ratings.</li>
+                <li>&bull; <strong>Access Requests:</strong> Request candidate permission to inspect their code and projects directly.</li>
+                <li>&bull; <strong>Saved Candidates:</strong> Bookmark standout candidates to your hiring shortlist.</li>
+                <li>&bull; <strong>Direct Contact:</strong> Reach out directly to proven candidates without resume screening delays.</li>
               </ul>
             </div>
           </TiltCard>
         </StaggerItem>
 
-        {/* Core Verification Engine */}
-        <StaggerItem>
-          <TiltCard tiltAmount={5}>
-            <div className="bg-[#EEF2FF] dark:bg-[#1A2238] border-3 border-[#3657F0] p-6 shadow-[5px_5px_0px_#3657F0] space-y-3 h-full">
+        {/* 5. Automated Testing Engine (Spans across) */}
+        <StaggerItem className="md:col-span-2">
+          <TiltCard tiltAmount={3}>
+            <div className="bg-[#EEF2FF] dark:bg-[#1A2238] border-3 border-[#3657F0] p-6 shadow-[5px_5px_0px_#3657F0] space-y-3">
               <div className="flex items-center gap-2.5 border-b-2 border-[#3657F0] pb-3">
                 <div className="p-2 bg-[#3657F0] text-white border border-[#191A23]">
                   <Terminal className="w-5 h-5 text-[#FFD966]" />
                 </div>
-                <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
-                  Automated Sandbox Harness
-                </h3>
+                <div>
+                  <span className="font-mono text-[10px] text-[#3657F0] dark:text-[#FFD966] font-bold uppercase">UNDER THE HOOD</span>
+                  <h3 className="font-display font-black text-xl text-[#191A23] dark:text-white">
+                    Automated Code Verification Engine
+                  </h3>
+                </div>
               </div>
-              <ul className="font-sans text-xs text-stone-700 dark:text-stone-300 space-y-2.5 leading-relaxed pt-1">
-                <li>&bull; <strong>gVisor Container Isolation:</strong> Secure sandboxed evaluation preventing arbitrary shell escapes.</li>
-                <li>&bull; <strong>Cyclomatic Complexity Benchmarks:</strong> Static AST analysis scoring code maintainability and depth.</li>
-                <li>&bull; <strong>Memory Leak Profiling:</strong> Valgrind and leak sanitizers benchmark dynamic memory footprint.</li>
-                <li>&bull; <strong>Anti-Plagiarism AST Fingerprint:</strong> Detects cloned repositories and AI prompt boilerplate.</li>
-              </ul>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans text-xs text-stone-700 dark:text-stone-300 pt-1">
+                <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700">
+                  <strong className="block text-[#191A23] dark:text-white font-bold mb-1">Automated Unit Tests</strong>
+                  <span>Runs all test suites to confirm that student functions produce correct outputs.</span>
+                </div>
+                <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700">
+                  <strong className="block text-[#191A23] dark:text-white font-bold mb-1">Code Quality Checks</strong>
+                  <span>Analyzes clean formatting, readability, and maintainable software architecture.</span>
+                </div>
+                <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700">
+                  <strong className="block text-[#191A23] dark:text-white font-bold mb-1">Verified Badges</strong>
+                  <span>Ensures badges can only be earned when tests pass and teachers approve.</span>
+                </div>
+              </div>
             </div>
           </TiltCard>
         </StaggerItem>

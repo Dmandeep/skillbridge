@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthRoleProvider, useAuthRole } from './context/AuthRoleContext';
 import { DataProvider } from './context/DataContext';
 
-// Motion & Brand Animation Components
-import { AnimatedIntro } from './animations/intro/AnimatedIntro';
+// Motion & Utility Components
 import { ScrollProgressBar } from './animations/scrolling/ScrollProgressBar';
 import { PageTransition } from './animations/transitions/PageTransition';
 import { SmoothScroll } from './animations/scrolling/SmoothScroll';
@@ -58,29 +57,8 @@ import { RecruiterCandidateSearch } from './views/recruiter/RecruiterCandidateSe
 import { RecruiterAccessRequestsView } from './views/recruiter/RecruiterAccessRequestsView';
 import { RecruiterSavedCandidatesView } from './views/recruiter/RecruiterSavedCandidatesView';
 
-// Super Admin Views
-import { SuperAdminDashboardView } from './views/superadmin/SuperAdminDashboardView';
-import { SuperAdminUsersView } from './views/superadmin/SuperAdminUsersView';
-import { SuperAdminRolesView } from './views/superadmin/SuperAdminRolesView';
-import { SuperAdminOrgsView } from './views/superadmin/SuperAdminOrgsView';
-import { SuperAdminAppointmentsView } from './views/superadmin/SuperAdminAppointmentsView';
-import { SuperAdminAnalyticsView } from './views/superadmin/SuperAdminAnalyticsView';
-import { SuperAdminAuditLogsView } from './views/superadmin/SuperAdminAuditLogsView';
-import { SuperAdminSettingsView } from './views/superadmin/SuperAdminSettingsView';
-
 const MainAppContent: React.FC = () => {
   const { currentRole, activeTab } = useAuthRole();
-  const [showIntro, setShowIntro] = useState<boolean>(() => {
-    // Accessible fallback: skip intro if user prefers reduced motion
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return false;
-    }
-    return true;
-  });
-
-  const handleReplayIntro = () => {
-    setShowIntro(true);
-  };
 
   const renderContent = () => {
     // 1. PUBLIC ROUTING
@@ -156,22 +134,6 @@ const MainAppContent: React.FC = () => {
       }
     }
 
-    // 6. SUPER ADMIN & ADDITIONAL ADMIN ROUTING
-    if (currentRole === 'SUPER_ADMIN' || currentRole === 'ADDITIONAL_ADMIN') {
-      switch (activeTab) {
-        case 'user-management': return <SuperAdminUsersView />;
-        case 'role-management': return <SuperAdminRolesView />;
-        case 'org-management': return <SuperAdminOrgsView />;
-        case 'admin-appointments': return <SuperAdminAppointmentsView />;
-        case 'platform-analytics': return <SuperAdminAnalyticsView />;
-        case 'audit-logs': return <SuperAdminAuditLogsView />;
-        case 'platform-settings': return <SuperAdminSettingsView />;
-        case 'dashboard':
-        default:
-          return <SuperAdminDashboardView />;
-      }
-    }
-
     return <LandingView />;
   };
 
@@ -183,21 +145,13 @@ const MainAppContent: React.FC = () => {
       {/* 1. Global Scroll Progress Indicator */}
       <ScrollProgressBar />
 
-      {/* 2. Cinematic Brand Intro Reveal */}
-      {showIntro && (
-        <AnimatedIntro 
-          forceShow={showIntro}
-          onComplete={() => setShowIntro(false)} 
-        />
-      )}
-
-      {/* 3. Global Role Explorer Ribbon */}
+      {/* 2. Global Role Explorer Ribbon */}
       <RoleSwitcherBar />
 
-      {/* 4. Global Navbar with Official SB Monogram & Theme Toggle */}
-      <Navbar onReplayIntro={handleReplayIntro} />
+      {/* 3. Global Navbar */}
+      <Navbar />
 
-      {/* 5. Main Content Area with Page Transitions */}
+      {/* 4. Main Content Area */}
       {isPublic ? (
         <main className="flex-1">
           <PageTransition pageKey={pageRouteKey}>

@@ -24,8 +24,6 @@ export const AuthRoleProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       case 'MENTOR': return MOCK_USERS.mentor;
       case 'ORG_ADMIN': return MOCK_USERS.org_admin;
       case 'RECRUITER': return MOCK_USERS.recruiter;
-      case 'SUPER_ADMIN': return MOCK_USERS.super_admin;
-      case 'ADDITIONAL_ADMIN': return MOCK_USERS.additional_admin;
       default: return null;
     }
   };

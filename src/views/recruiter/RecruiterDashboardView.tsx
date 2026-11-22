@@ -31,30 +31,30 @@ export const RecruiterDashboardView: React.FC = () => {
         <div className="bg-emerald-600 text-white border-4 border-[#191A23] shadow-[6px_6px_0px_#191A23] p-6 sm:p-8 relative overflow-hidden">
           <div className="max-w-2xl relative z-10 space-y-3">
             <span className="font-mono text-xs font-bold uppercase tracking-wider bg-[#FFD966] text-[#191A23] px-2.5 py-0.5 border border-[#191A23]">
-              TECHNICAL TALENT ACQUISITION
+              RECRUITER DASHBOARD
             </span>
             <h1 className="font-display font-black text-3xl sm:text-5xl text-white">
-              Verified Talent Radar
+              Verified Candidate Search
             </h1>
             <p className="font-sans text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
               Logged in as <strong>{currentUser?.name}</strong> ({currentUser?.organizationName}). 
-              Search engineering candidates verified through automated test suites and human faculty attestation.
+              Find and connect with candidates whose coding skills have been verified through real project tests and teacher reviews.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-3">
               <MagneticButton
                 onClick={() => setActiveTab('talent-discovery')}
-                className="px-5 py-2.5 bg-[#FFD966] text-[#191A23] border-2 border-[#191A23] text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2"
+                className="px-5 py-2.5 bg-[#FFD966] text-[#191A23] border-2 border-[#191A23] text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
               >
                 <Compass className="w-4 h-4 text-[#3657F0]" />
-                <span>Explore Verified Talent</span>
+                <span>Search Candidates</span>
               </MagneticButton>
               <MagneticButton
                 onClick={() => setActiveTab('access-requests')}
-                className="px-5 py-2.5 bg-white text-[#191A23] border-2 border-[#191A23] text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2"
+                className="px-5 py-2.5 bg-white text-[#191A23] border-2 border-[#191A23] text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
               >
                 <KeyRound className="w-4 h-4 text-[#FF7138]" />
-                <span>Dossier Access ({approvedRequests.length} Active)</span>
+                <span>Access Requests ({approvedRequests.length} Approved)</span>
               </MagneticButton>
             </div>
           </div>

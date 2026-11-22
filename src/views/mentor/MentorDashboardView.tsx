@@ -28,30 +28,30 @@ export const MentorDashboardView: React.FC = () => {
         <div className="bg-[#FF7138] text-white border-4 border-[#191A23] shadow-[6px_6px_0px_#191A23] p-6 sm:p-8 relative overflow-hidden">
           <div className="max-w-2xl relative z-10 space-y-3">
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#191A23] bg-[#FFD966] px-2.5 py-0.5 border border-[#191A23]">
-              FACULTY VERIFICATION DESK
+              TEACHER DASHBOARD
             </span>
             <h1 className="font-display font-black text-3xl sm:text-5xl text-white">
               Welcome, {currentUser?.name}
             </h1>
             <p className="font-sans text-xs sm:text-sm text-white/90 leading-relaxed font-medium">
               {currentUser?.title} at <strong>{currentUser?.organizationName}</strong>. 
-              You hold final attestation authority over student practical competence submissions.
+              Review student projects, check automated test results, and provide helpful guidance.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-3">
               <MagneticButton
                 onClick={() => setActiveTab('submission-review')}
-                className="px-5 py-2.5 bg-[#191A23] text-[#FFD966] border-2 border-white text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2"
+                className="px-5 py-2.5 bg-[#191A23] text-[#FFD966] border-2 border-white text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
               >
                 <ClipboardCheck className="w-4 h-4 text-[#FF7138]" />
-                <span>Review Pending Submissions ({pendingSubmissions.length})</span>
+                <span>Review Pending Projects ({pendingSubmissions.length})</span>
               </MagneticButton>
               <MagneticButton
                 onClick={() => setActiveTab('assigned-students')}
-                className="px-5 py-2.5 bg-white text-[#191A23] border-2 border-[#191A23] text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2"
+                className="px-5 py-2.5 bg-white text-[#191A23] border-2 border-[#191A23] text-xs font-bold tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
               >
                 <Users className="w-4 h-4 text-[#3657F0]" />
-                <span>Mentee Cohort</span>
+                <span>My Students</span>
               </MagneticButton>
             </div>
           </div>

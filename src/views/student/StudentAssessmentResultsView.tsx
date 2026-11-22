@@ -38,13 +38,13 @@ export const StudentAssessmentResultsView: React.FC = () => {
         <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#3657F0] dark:text-[#FFD966]">
-              STAGE 2 AUTOMATED HARNESS
+              AUTOMATED TESTING &amp; RESULTS
             </span>
             <h1 className="font-display font-black text-3xl sm:text-4xl text-[#191A23] dark:text-white mt-1">
-              Automated Runner &amp; Benchmark Telemetry
+              Project Test Results &amp; Code Checks
             </h1>
             <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-sans mt-1">
-              Deterministic code execution in an isolated sandbox. Measures test coverage, AST complexity, race conditions, and runtime benchmarks.
+              Automated tests verify that your code compiles, passes assertion tests, and meets maintainability standards.
             </p>
           </div>
 

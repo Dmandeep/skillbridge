@@ -31,13 +31,13 @@ export const StudentProjectsView: React.FC = () => {
         <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#3657F0] dark:text-[#FFD966]">
-              PRACTICAL EVIDENCE REPOSITORY
+              PROJECTS PORTFOLIO
             </span>
             <h1 className="font-display font-black text-3xl sm:text-4xl text-[#191A23] dark:text-white mt-1">
-              Submitted Engineering Projects
+              My Submitted Projects
             </h1>
             <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-sans mt-1">
-              Each repository undergoes static analysis, automated assertion benchmarking, and mentor review.
+              Projects submitted for automated testing and teacher review.
             </p>
           </div>
 

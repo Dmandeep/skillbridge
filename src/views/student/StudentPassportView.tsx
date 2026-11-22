@@ -39,27 +39,27 @@ export const StudentPassportView: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] p-4 shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966]">
         <div>
           <span className="font-mono text-xs font-bold uppercase text-[#3657F0] dark:text-[#FFD966]">
-            CRYPTOGRAPHIC PROOF CREDENTIAL
+            VERIFIED SKILLS PROFILE
           </span>
           <h1 className="font-display font-black text-2xl text-[#191A23] dark:text-white">
-            Official SkillBridge Verification Passport
+            My Verified Skills Passport
           </h1>
         </div>
 
         <div className="flex items-center gap-2 font-mono text-xs font-bold">
           <button
             onClick={handleCopyLink}
-            className="px-3.5 py-2 bg-[#F8F3E9] dark:bg-[#282B3A] border-2 border-[#191A23] text-[#191A23] dark:text-white flex items-center gap-1.5 shadow-[2px_2px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+            className="px-3.5 py-2 bg-[#F8F3E9] dark:bg-[#282B3A] border-2 border-[#191A23] text-[#191A23] dark:text-white flex items-center gap-1.5 shadow-[2px_2px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
           >
             {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-            <span>{copied ? 'Link Copied!' : 'Copy Verification URL'}</span>
+            <span>{copied ? 'Link Copied!' : 'Copy Share Link'}</span>
           </button>
           <button
-            onClick={() => alert('Exporting W3C Verifiable Credential JSON payload...')}
-            className="px-4 py-2 bg-[#FFD966] text-[#191A23] border-2 border-[#191A23] flex items-center gap-1.5 shadow-[2px_2px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
+            onClick={() => alert('Downloading verified skills summary...')}
+            className="px-4 py-2 bg-[#FFD966] text-[#191A23] border-2 border-[#191A23] flex items-center gap-1.5 shadow-[2px_2px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
           >
             <Download className="w-4 h-4" />
-            <span>Export Verifiable Credential</span>
+            <span>Download Summary</span>
           </button>
         </div>
       </div>

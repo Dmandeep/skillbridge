@@ -112,13 +112,13 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
               <div>
                 <div className="border-b-2 border-[#191A23] pb-3 mb-5">
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#3657F0] dark:text-[#FFD966]">
-                    EVIDENCE SUBMISSION PORTAL
+                    PROJECT SUBMISSION
                   </span>
                   <h2 className="font-display font-black text-2xl text-[#191A23] dark:text-white mt-1">
-                    Submit Practical Project for Verification
+                    Submit Project for Review
                   </h2>
                   <p className="text-xs text-stone-600 dark:text-stone-400 font-sans mt-1">
-                    Submissions trigger automated static analysis and dynamic assertion suites before being routed to your assigned mentor.
+                    Automated tests will run on your code, and your teacher will review and provide feedback.
                   </p>
                 </div>
 
@@ -211,7 +211,7 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
                       className="px-6 py-2.5 bg-[#3657F0] text-white border-2 border-[#191A23] font-mono text-xs font-bold uppercase tracking-wider shadow-[3px_3px_0px_#191A23] hover:translate-x-0.5 hover:translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
                     >
                       <UploadCloud className="w-4 h-4 text-[#FFD966]" />
-                      <span>{isSubmitting ? 'Spinning Up Sandbox...' : 'Run Automated Suite & Submit'}</span>
+                      <span>{isSubmitting ? 'Testing Code...' : 'Test Code & Submit'}</span>
                     </button>
                   </div>
                 </form>
@@ -222,10 +222,10 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
               <div className="py-12 text-center space-y-4">
                 <div className="w-14 h-14 border-4 border-[#3657F0] border-t-transparent rounded-full animate-spin mx-auto"></div>
                 <h3 className="font-display font-black text-2xl text-[#191A23] dark:text-white">
-                  Executing Automated Benchmark Suite
+                  Running Automated Tests...
                 </h3>
                 <p className="font-mono text-xs text-stone-600 dark:text-stone-300 max-w-md mx-auto">
-                  Isolated sandbox container running 48 assertions &bull; AST complexity check &bull; Memory leak analysis &bull; Anti-plagiarism verification
+                  Running unit tests &bull; Checking code coverage &bull; Checking code quality
                 </p>
               </div>
             )}
@@ -236,7 +236,7 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <h3 className="font-display font-black text-2xl text-[#191A23] dark:text-white">
-                  Automated Evaluation Complete!
+                  Project Submitted Successfully!
                 </h3>
                 <p className="font-sans text-xs text-stone-600 dark:text-stone-300 max-w-md mx-auto">
                   Your project passed automated tests with <strong>98.4% coverage</strong>. It has been routed to <strong>Dr. Elena Rostova</strong> for Tier 3 rubric evaluation and cryptographic stamp minting.

@@ -68,26 +68,6 @@ export const MOCK_USERS: Record<string, User> = {
     title: 'Senior Technical Talent Partner',
     bio: 'Seeking practical engineering craft. I hire based on attested test suites and mentor-verified code architecture.',
     createdAt: '2025-11-20',
-  },
-  super_admin: {
-    id: 'usr_sup_01',
-    name: 'Devon Kester',
-    email: 'devon@skillbridge.io',
-    role: 'SUPER_ADMIN',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
-    title: 'Chief Protocol & Trust Architect',
-    bio: 'Guardian of the SkillBridge decentralized verification engine and platform governance.',
-    createdAt: '2025-01-01',
-  },
-  additional_admin: {
-    id: 'usr_add_01',
-    name: 'Kavita Menon',
-    email: 'kavita.ops@skillbridge.io',
-    role: 'ADDITIONAL_ADMIN',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80',
-    title: 'Institutional Operations Lead',
-    bio: 'Managing organization accreditations and audit integrity.',
-    createdAt: '2025-09-12',
   }
 };
 
@@ -487,11 +467,11 @@ export const MOCK_AUDIT_LOGS: AuditLogEntry[] = [
   },
   {
     id: 'log_04',
-    actorName: 'Devon Kester',
-    actorRole: 'SUPER_ADMIN',
-    action: 'APPOINTED_ADDITIONAL_ADMIN',
-    entityType: 'ROLE_APPOINTMENT',
-    details: 'Elevated Kavita Menon to Additional Administrator with Organization Audit delegation authority.',
+    actorName: 'Marcus Vance',
+    actorRole: 'ORG_ADMIN',
+    action: 'UPDATED_COURSE_CURRICULUM',
+    entityType: 'ORGANIZATION',
+    details: 'Added Full-Stack React & Next.js Performance to required engineering curriculum track.',
     timestamp: '2026-09-12T14:00:00Z',
     ipHash: '12.89.201.***',
     immutableBlockIndex: 9812

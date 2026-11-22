@@ -3,9 +3,7 @@ export type UserRole =
   | 'STUDENT'
   | 'MENTOR'
   | 'ORG_ADMIN'
-  | 'RECRUITER'
-  | 'SUPER_ADMIN'
-  | 'ADDITIONAL_ADMIN';
+  | 'RECRUITER';
 
 export type VerificationStatus = 
   | 'SELF_DECLARED'

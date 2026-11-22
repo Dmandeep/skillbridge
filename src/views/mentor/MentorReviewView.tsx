@@ -66,13 +66,13 @@ export const MentorReviewView: React.FC = () => {
         <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966] p-6 flex flex-wrap items-center justify-between gap-4">
         <div>
           <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#FF7138]">
-            FACULTY VERIFICATION CONSOLE
+            TEACHER REVIEW
           </span>
           <h1 className="font-display font-black text-3xl text-[#191A23] dark:text-white mt-1">
-            Student Submission Review Workspace
+            Review Student Projects
           </h1>
           <p className="text-xs text-stone-600 dark:text-stone-300 font-sans mt-1">
-            Inspect automated telemetry evidence, evaluate against standardized rubrics, and issue immutable verification decisions.
+            Inspect automated test results, evaluate code quality, and provide constructive feedback.
           </p>
         </div>
 
