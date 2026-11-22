@@ -4,163 +4,194 @@
 
 [![Vite](https://img.shields.io/badge/Vite-8.3.8-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-19.3.1-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-7.0.2-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS_v4-4.3.5-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![GSAP](https://img.shields.io/badge/GSAP-3.15.1-88CE02?logo=greensock&logoColor=white)](https://gsap.com/)
-[![Lenis](https://img.shields.io/badge/Lenis-1.3.27-000000)](https://lenis.darkroom.engineering/)
 [![Motion](https://img.shields.io/badge/Motion-14.14.0-FF0055)](https://motion.dev/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.15.1-88CE02?logo=greensock&logoColor=white)](https://gsap.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
 ## 1. Project Overview
 
-**SkillBridge** is an enterprise-grade EdTech + HRTech platform designed to replace resume keyword inflation with **cryptographically attested, reproducible code execution proof**.
+**SkillBridge** is a modern, user-friendly EdTech + HRTech platform designed to connect **students, teachers, colleges, and recruiters** through real, practical skills rather than resume guesswork.
 
-Rather than relying on self-reported LinkedIn claims or synthetic algorithmic puzzles, SkillBridge connects **students, faculty mentors, accredited universities, and technical recruiters** through an end-to-end verification lifecycle:
-1. **Students** submit production Git repositories (distributed systems, full-stack SPAs, kernel components).
-2. **Automated Test Runners** execute assertions, cyclomatic complexity benchmarks, and memory leak analysis in isolated gVisor containers.
-3. **Accredited Faculty Mentors** conduct split-screen rubric reviews and issue immutable cryptographic seals.
-4. **Technical Recruiters** discover pre-verified candidates filtered by actual assertion coverage and request consent-gated access to detailed engineering dossiers.
-
----
-
-## 2. Problem Statement
-
-* **84% of Technical Resumes Contain Exaggerations:** Generative AI tools allow applicants to produce tailored buzzword-heavy resumes and clone public GitHub repositories, creating severe hiring noise.
-* **LeetCode Algorithmic Disconnect:** Memorizing dynamic programming mnemonics does not prove an applicant can architect crash-tolerant distributed databases, manage thread contention, or structure clean codebases.
-* **University GPA Inconsistency:** Academic grades fail to convey practical production engineering readiness to hiring managers.
-* **Recruiter Overload:** Recruiters receive thousands of low-signal applications per job posting, paralyzing talent acquisition teams.
+In a world where resumes are often exaggerated and interview quizzes test memorization instead of real building ability, SkillBridge creates a transparent, trustworthy verification workflow:
+1. **Students** build real coding projects and submit their GitHub repositories.
+2. **Automated Tests** check test pass rates, code coverage, and quality standards.
+3. **Teachers** review student code, provide constructive feedback, and award verified badges.
+4. **Recruiters** discover pre-verified candidates with proven code skills and connect directly.
 
 ---
 
-## 3. Proposed Solution
+## 2. Core User Roles & Workflows
 
-SkillBridge restores trust in technical recruitment through **Dual-Factor Runtime Verification**:
+SkillBridge provides 4 streamlined, dedicated workspaces easily accessible from the top **View Demo As** bar:
 
 ```
 +-----------------------------------------------------------------------------------+
-|                            THE SKILLBRIDGE PIPELINE                               |
+|                            THE 4 CORE USER ROLES                                  |
 +-----------------------------------------------------------------------------------+
-| 1. Candidate Commits Code -> Repositories, Git tags, GPG-signed commits           |
-|                                     |                                             |
-|                                     v                                             |
-| 2. Automated Test Runner  -> Sandboxed unit tests, mutation analysis, complexity  |
-|                                     |                                             |
-|                                     v                                             |
-| 3. Faculty Rubric Review  -> Accredited mentor attestation & cryptographic seal   |
-|                                     |                                             |
-|                                     v                                             |
-| 4. Skill Passport Minted  -> Student data sovereignty, consent-gated recruiter access|
+|                                                                                   |
+|  [ 🎓 Student ]         [ 👨‍🏫 Teacher ]       [ 🏛️ College Admin ]  [ 💼 Recruiter ]   |
+|  - Submit Projects     - Review Projects     - Student Directory   - Search Talent|
+|  - Test Results        - Score Rubrics       - Manage Faculty      - Request Access|
+|  - Teacher Feedback    - Write Feedback      - Assign Teachers     - Save Candidates|
+|  - Skills Passport     - Track Students      - College Analytics   - Direct Hire   |
+|                                                                                   |
 +-----------------------------------------------------------------------------------+
 ```
 
+### 🎓 1. Student Portal
+* **Project Submissions:** Connect GitHub repositories and submit practical projects.
+* **Automated Test Results:** View test suite outcomes, test pass percentages, and code checks.
+* **Teacher Reviews:** Read personalized feedback, rubric scores, and guidance from their assigned teacher.
+* **Skills Passport:** An endorsed, shareable profile showing proven competencies.
+* **Recruiter Permissions:** Full student privacy control — students choose which recruiters can view their project code.
+
+### 👨‍🏫 2. Teacher & Mentor Portal
+* **Review Queue:** Review pending project submissions from assigned students.
+* **Automated Test Inspection:** Inspect test results alongside the student's repository.
+* **Standardized Rubric Grading:** Score Code Quality, System Architecture, and Problem Solving (1–5 scale).
+* **Personalized Feedback:** Write actionable feedback to help students grow and improve.
+* **My Students:** Track advisee progress across projects.
+
+### 🏛️ 3. College Administration Portal
+* **Student Directory:** View all enrolled students and their verification status.
+* **Faculty Management:** Maintain the roster of verified teachers and evaluators.
+* **Teacher Assignment:** Directly assign or change which faculty teacher mentors each student.
+* **Join Requests:** Approve incoming student enrollment and affiliation requests.
+* **College Analytics:** Track student project completion rates and employer connections.
+
+### 💼 4. Recruiter Portal
+* **Candidate Search:** Discover candidates filtered by verified skills and test scores.
+* **Candidate Access Requests:** Request student permission to view their full project code.
+* **Saved Candidates:** Save and bookmark high-potential engineering talent to a hiring shortlist.
+* **Direct Outreach:** Contact proven candidates with confidence.
+
 ---
 
-## 4. Main Features
+## 3. How College Admins Assign Students to Teachers
 
-* **Cinematic Brand Introduction Experience:** 4-scene choreographic sequence illustrating the convergence of skills and opportunities into the geometric SB monogram, featuring full keyboard accessibility (`Esc` skip), prefers-reduced-motion detection, and zero-flash theme persistence.
-* **Lenis + GSAP Scroll Storytelling:** Smooth momentum scroll physics coupled with GSAP ScrollTrigger, kinetic headings, text scramble decryption, and highlight sweep markers.
-* **Interactive Verification Pipeline Simulator:** Live browser-based terminal executing simulated 48/48 test assertions with real-time runner logs and confetti celebration.
-* **Physical-Style Cryptographic Skill Passport:** Tangible brutalist verification dossier with QR code, SHA-256 root proof hash, faculty stamp, and W3C Verifiable Credential export.
-* **Split-Screen Faculty Review Console:** Dual-column mentor workspace comparing candidate repository code against automated test assertion outputs and interactive rubric scoring sliders.
-* **Faceted Recruiter Radar:** Talent discovery filtered by verified test coverage percentages, university accreditation, and direct dossier unlock requests.
-* **Institutional Governance Hub:** University admin portal for student affiliation approvals, cohort attestation velocity tracking, and evaluator management.
-* **Root Security Telemetry:** Super Admin audit stream tracking immutable block entries and node runner status.
+SkillBridge makes faculty mentorship organized and accountable through a simple administrative delegation system:
+
+```
+[ 1. Student Enrolls ]
+       │
+       ▼
+[ 2. College Admin Assigns Teacher ] ──► (In Student Directory dropdown)
+       │
+       ▼
+[ 3. Student Submits Project ]
+       │
+       ▼
+[ 4. Automated Tests Run ]
+       │
+       ▼
+[ 5. Project Routes to Assigned Teacher's Review Queue ]
+       │
+       ▼
+[ 6. Teacher Reviews, Scores Rubric & Endorses Badge ]
+```
+
+1. **Student Enrollment:** When a student joins, the college admin reviews their degree program and track (e.g., Systems vs. Web Architecture).
+2. **Teacher Assignment in Directory:** In the **College Admin &rarr; Student Directory**, the college admin assigns an accredited faculty teacher (e.g., *Dr. Elena Rostova* or *Prof. David Vance*) to that student using the interactive teacher dropdown.
+3. **Automated Submission Routing:** Whenever that student submits a project, the submission automatically routes to their assigned teacher's **Projects to Review** desk.
+4. **Evaluation & Endorsement:** The teacher grades the project, writes feedback, and awards the verified skill badge.
 
 ---
 
-## 5. User Roles & Experiences
+## 4. The 3-Step Verification Process
 
-SkillBridge includes 6 dedicated role experiences, accessible instantly through the global top explorer bar:
+SkillBridge follows a simple, evidence-based verification lifecycle:
 
-| Role | Target Persona | Primary Responsibilities & Workflows |
+| Step | Action | Outcome |
 | :--- | :--- | :--- |
-| **Student / Apprentice** | Aarav Sharma | Submit repositories, track Tier 1-3 skill advancement, manage consent-gated recruiter permissions, export Skill Passport. |
-| **Teacher / Mentor** | Dr. Elena Rostova | Inspect pending submissions, evaluate automated assertion telemetry, score architectural rubrics, mint verification stamps. |
-| **Organization Admin** | Marcus Vance (Dean) | Manage university accreditation, approve/reject student affiliation requests, monitor cohort completion velocity. |
-| **Technical Recruiter** | Sophia Chen | Search candidates by verified coverage thresholds, inspect high-signal dossiers, request student unlock keys. |
-| **Super Admin** | Devon Kester | Platform protocol governance, node runner health monitoring, university accreditation, tamper-evident audit logs. |
-| **Additional Admin** | Kavita Menon | Delegated platform operations, compliance audits, and role assignment. |
+| **Step 1: Submit** | Student connects GitHub project link | Functional code artifact submitted |
+| **Step 2: Test** | System runs automated test checks | Test pass rate, coverage, and quality benchmarks recorded |
+| **Step 3: Review** | Teacher reviews code and grades rubric | Personal feedback provided and verified badge endorsed |
+| **Step 4: Connect** | Recruiter discovers verified profile | Opportunity connected without resume guesswork |
 
 ---
 
-## 6. Technology Stack
+## 5. Technology Stack
 
-### Frontend Architecture
+### Frontend Framework & Libraries
 * **Framework:** React 19.3.1
 * **Build Tool:** Vite 8.3.8
-* **Styling:** Tailwind CSS v4.3.5 (with native `@custom-variant dark` support)
-* **Motion & Animation:**
-  * **GSAP 3.15.1** + **@gsap/react 2.1.2** (ScrollTrigger, scrubbed pinning, kinetic typography)
-  * **Lenis 1.3.27** (Smooth momentum scroll physics)
-  * **Motion / Framer Motion 14.14.0** (Spring interactions, modal physics, layout animations)
-* **Typography:** Space Grotesk (Editorial Display), DM Sans (Body), IBM Plex Mono (Technical Telemetry)
+* **Language:** TypeScript 7.0.2
+* **Styling:** Tailwind CSS v4.3.5 (with native dark/light theme switching)
+* **Animation & Motion:**
+  * **Motion / Framer Motion 14.14.0** (Spring physics, modal dialogs, interactive cards)
+  * **GSAP 3.15.1** + **@gsap/react 2.1.2** (Scroll reveals and smooth motion)
+  * **Lenis 1.3.27** (Smooth scroll physics)
 * **Icons:** Lucide React 1.77.0
-* **Visual Effects:** Canvas Confetti 1.9.4
+* **Celebration Effects:** Canvas Confetti 1.9.4
 
 ---
 
-## 7. Official Brand System
+## 6. Official Brand Color Palette
 
-SkillBridge adheres strictly to its official five-color brand palette across both light and dark themes:
+SkillBridge uses a consistent, high-contrast 5-color palette:
 
-| Color Name | Hex Code | Role in Interface |
+| Color Name | Hex Code | Purpose in UI |
 | :--- | :--- | :--- |
-| **Electric Cobalt** | `#3657F0` | Primary brand accent, action links, verified badges, active tabs |
-| **Tangerine Orange** | `#FF7138` | Secondary highlight, primary CTA buttons, mentor accents, alerts |
-| **Butter Yellow** | `#FFD966` | Keystone anchors, telemetry highlights, Tier-1 status tags |
-| **Warm Ivory** | `#F8F3E9` | Light theme canvas, elevated card backgrounds |
-| **Ink Black** | `#191A23` | Dark theme canvas, brutalist border strokes, deep contrast text |
+| **Electric Cobalt** | `#3657F0` | Primary brand color, student links, active tabs, verified tags |
+| **Tangerine Orange** | `#FF7138` | Primary CTA buttons, teacher portal accents, notifications |
+| **Butter Yellow** | `#FFD966` | College admin highlights, hero badges, selection accents |
+| **Warm Ivory** | `#F8F3E9` | Light theme background, card containers |
+| **Ink Black** | `#191A23` | Dark theme background, brutalist borders, deep contrast text |
 
 ---
 
-## 8. Project Structure
+## 7. Project Structure
 
 ```
-skilbridge/
-├── .env.example                 # Environment configuration template
-├── .gitignore                   # Version control exclusions
-├── index.html                   # HTML entry point with zero-flash theme script
-├── package.json                 # Project dependencies & scripts
+skillbridge/
+├── index.html                   # Entry HTML document with zero-flash theme persistence
+├── package.json                 # Project scripts and dependencies
 ├── README.md                    # Platform documentation
-├── tsconfig.json                # TypeScript project configuration
-├── vercel.json                  # Vercel SPA routing & cache configuration
+├── tsconfig.json                # TypeScript configuration
+├── vercel.json                  # Vercel SPA routing rewrites
 ├── vite.config.ts               # Vite configuration with Tailwind CSS v4 plugin
 ├── public/
-│   └── brand/                   # SVG brand assets & favicons
+│   └── brand/                   # SVG brand assets and icons
 └── src/
     ├── animations/
     │   ├── interactions/        # MagneticButton, TiltCard, ThemeToggle
-    │   ├── intro/               # AnimatedIntro (4-scene cinematic reveal)
-    │   ├── motion-config/       # Spring physics & transition variants
-    │   ├── scrolling/           # SmoothScroll (Lenis), ScrollStory (GSAP), ScrollReveal
+    │   ├── scrolling/           # ScrollReveal, StaggerContainer, SmoothScroll
     │   ├── transitions/         # PageTransition
-    │   └── typography/          # KineticHeading, TextHighlightSweep, TextScramble, SplitText
+    │   └── typography/          # AnimatedCounter, KineticHeading, RotatingHeadline, SplitText
     ├── components/
-    │   ├── brand/               # SkillBridgeLogo & SkillBridgeSymbol
+    │   ├── brand/               # SkillBridgeLogo and SkillBridgeSymbol
     │   ├── common/              # Navbar, Sidebar, StatCard, StatusPill, VerificationStamp
     │   └── public/              # Footer
-    ├── context/                 # AuthRoleContext, ThemeContext, DataContext
-    ├── constants/               # mockData.ts (Simulated demo profiles & records)
-    ├── types/                   # TypeScript interfaces (User, SkillItem, Submission, etc.)
+    ├── context/
+    │   ├── AuthRoleContext.tsx   # Client-side 4-role authentication state
+    │   ├── DataContext.tsx       # In-memory reactive project and student data
+    │   └── ThemeContext.tsx      # Dark and light mode provider
+    ├── constants/
+    │   └── mockData.ts          # Simulated student, teacher, college, and recruiter records
+    ├── types/
+    │   └── index.ts             # TypeScript interfaces for users, projects, and permissions
     └── views/
         ├── public/              # LandingView, AboutView, HowItWorksView, LoginView, RegisterView
-        ├── student/             # StudentDashboardView, StudentPassportView, StudentSkillsView, etc.
-        ├── mentor/              # MentorDashboardView, MentorReviewView, MentorStudentsView, etc.
-        ├── org/                 # OrgDashboardView, OrgStudentsView, OrgMembershipRequestsView, etc.
-        ├── recruiter/           # RecruiterDashboardView, RecruiterDiscoveryView, etc.
-        └── superadmin/          # SuperAdminDashboardView, SuperAdminAuditLogsView, etc.
+        ├── student/             # StudentDashboard, StudentProjects, StudentPassport, etc.
+        ├── mentor/              # MentorDashboard, MentorReview, MentorStudents, etc.
+        ├── org/                 # OrgDashboard, OrgStudents, OrgMentors, OrgPrograms, etc.
+        └── recruiter/           # RecruiterDashboard, RecruiterDiscovery, RecruiterSearch, etc.
 ```
 
 ---
 
-## 9. Installation Instructions
+## 8. Getting Started
 
 ### Prerequisites
 * **Node.js:** v18.0.0 or higher (v20+ recommended)
 * **npm:** v9.0.0 or higher
 
-### Setup Steps
+### Installation
+
 ```bash
 # 1. Clone the repository
 git clone https://github.com/Dmandeep/skillbridge.git
@@ -169,110 +200,43 @@ cd skillbridge
 # 2. Install dependencies
 npm install
 
-# 3. Create local environment configuration
-cp .env.example .env
-```
-
----
-
-## 10. Development Commands
-
-```bash
-# Start local development server with Hot Module Replacement (HMR)
+# 3. Start local development server
 npm run dev
-
-# Run local server with host exposure (accessible on local network)
-npm run dev -- --host --port 5173
-
-# Run static code analysis / linting
-npm run lint
-
-# Preview production build locally
-npm run preview
 ```
 
----
-
-## 11. Production Build Instructions
-
-```bash
-# Execute type-checking and production compilation
-npm run build
-
-# Output will be generated in the /dist folder:
-# dist/
-# ├── index.html
-# └── assets/
-#     ├── index-[hash].css
-#     └── index-[hash].js
-```
+The application will be running locally at **`http://localhost:5173/`**.
 
 ---
 
-## 12. Environment Configuration
+## 9. Available NPM Scripts
 
-All client-side environment variables must be prefixed with `VITE_`. See `.env.example`:
-
-| Variable | Description | Default |
-| :--- | :--- | :--- |
-| `VITE_APP_NAME` | Platform title | `SkillBridge` |
-| `VITE_APP_TAGLINE` | Official brand tagline | `"Skills Demonstrated. Talent Verified. Opportunities Connected."` |
-| `VITE_ENABLE_CINEMATIC_INTRO` | Controls intro sequence | `true` |
-| `VITE_DEFAULT_THEME` | Default color scheme | `auto` |
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Starts local Vite development server with hot module replacement |
+| `npm run build` | Runs TypeScript compilation (`tsc -b`) and builds production bundle |
+| `npm run preview` | Previews the production build locally |
+| `npm run lint` | Runs linter check (`oxlint`) |
 
 ---
 
-## 13. Vercel Deployment Instructions
+## 10. Deployment
 
-SkillBridge is configured for direct zero-configuration deployment on **Vercel**:
-
-1. Log into your [Vercel Dashboard](https://vercel.com/).
-2. Click **"Add New..."** &rarr; **"Project"**.
-3. Import the GitHub repository: `https://github.com/Dmandeep/skillbridge`.
-4. Vercel automatically detects the Vite preset:
-   * **Framework Preset:** `Vite`
-   * **Build Command:** `npm run build`
-   * **Output Directory:** `dist`
-   * **Install Command:** `npm install`
-5. Click **"Deploy"**.
-6. The included `vercel.json` ensures all SPA routes (`/`, `/about`, `/login`, etc.) are cleanly rewritten to `index.html`.
+The project is pre-configured for one-click deployment on **Vercel** or any modern static hosting service:
+* **Framework Preset:** `Vite`
+* **Build Command:** `npm run build`
+* **Output Directory:** `dist`
+* **Install Command:** `npm install`
+* The included `vercel.json` ensures all SPA routes route cleanly to `index.html`.
 
 ---
 
-## 14. Current Limitations
+## 11. GitHub Repository
 
-* **Frontend Prototype Scope:** The current implementation is a rich interactive client-side application. Authentication is simulated through mock profiles, and data mutations persist in client memory (`DataContext`).
-* **Mock Execution Telemetry:** Automated test assertions and gVisor runner logs are pre-computed simulations.
-* **Ephemeral State:** Refreshing the application resets in-memory submissions to the default demo state.
-
----
-
-## 15. Future Java Spring Boot + MySQL Integration Roadmap
-
-The next phase of SkillBridge transitions the platform to a distributed production architecture:
-
-```
-+-------------------------------------------------------------------------------+
-|                    FUTURE BACKEND ARCHITECTURE (PHASE 4)                      |
-+-------------------------------------------------------------------------------+
-| [React 19 Frontend]  <--- REST & WebSocket API --->  [Spring Boot Gateway]   |
-|                                                              |                |
-|              +-----------------------------------------------+                |
-|              |                               |                                |
-|              v                               v                                v
-|      [Auth & User Service]         [Verification Service]          [Runner Sandbox]
-|      - Spring Security             - Mentorship Rubrics            - gVisor Engine
-|      - OAuth2 / OIDC               - Cryptographic Ledger          - Docker Daemon
-|      - JWT Token Rotation          - Passport Minting              - AST Audit Engine
-|              |                               |                                |
-|              v                               v                                |
-|      [MySQL 8.4 RDBMS]             [MySQL + Redis Cache]                      |
-|      - ACID Transactions           - High-throughput telemetry                |
-+-------------------------------------------------------------------------------+
-```
+* **Repository:** [https://github.com/Dmandeep/skillbridge](https://github.com/Dmandeep/skillbridge)
+* **Branch:** `main`
 
 ---
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is open-source under the [MIT License](LICENSE).
