@@ -5,9 +5,7 @@ import {
   Search, 
   Download, 
   BookOpenCheck, 
-  CheckCircle2, 
-  Info,
-  UserCheck
+  CheckCircle2
 } from 'lucide-react';
 
 export const OrgStudentsView: React.FC = () => {
@@ -100,30 +98,6 @@ export const OrgStudentsView: React.FC = () => {
             <Download className="w-4 h-4" />
             <span>Export Roster CSV</span>
           </button>
-        </div>
-      </ScrollReveal>
-
-      {/* Explanatory Guide: How Teacher Assignment Works */}
-      <ScrollReveal direction="up" delay={0.08}>
-        <div className="bg-[#EEF2FF] dark:bg-[#1A2238] border-2 border-[#3657F0] p-5 shadow-[4px_4px_0px_#3657F0] space-y-3">
-          <div className="flex items-center gap-2 text-[#3657F0] dark:text-[#FFD966] font-mono text-xs font-bold uppercase tracking-wider">
-            <Info className="w-4 h-4 shrink-0" />
-            <span>HOW STUDENTS ARE ASSIGNED TO TEACHERS BY THE COLLEGE</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-sans text-xs text-stone-700 dark:text-stone-300">
-            <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700 space-y-1">
-              <strong className="block text-[#191A23] dark:text-white font-bold font-mono">1. Degree &amp; Track Match</strong>
-              <span>When a student joins, the college admin reviews their branch (e.g. Systems vs AI/ML) and identifies suitable faculty.</span>
-            </div>
-            <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700 space-y-1">
-              <strong className="block text-[#191A23] dark:text-white font-bold font-mono">2. College Admin Assigns</strong>
-              <span>The college admin uses the dropdown below to assign a dedicated teacher to each student.</span>
-            </div>
-            <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700 space-y-1">
-              <strong className="block text-[#191A23] dark:text-white font-bold font-mono">3. Automated Routing</strong>
-              <span>When the student submits a project, it is sent directly to their assigned teacher's review desk for grading.</span>
-            </div>
-          </div>
         </div>
       </ScrollReveal>
 
