@@ -1,0 +1,34 @@
+# Logs & Temporary Files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies & Build Output
+node_modules
+dist
+dist-ssr
+*.local
+
+# Environment & Secret Files (CRITICAL: Never commit to source control)
+.env
+.env.local
+.env.*.local
+
+# Vercel Deployment Metadata
+.vercel
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
