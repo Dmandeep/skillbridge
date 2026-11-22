@@ -27,7 +27,6 @@ import { StudentDashboardView } from './views/student/StudentDashboardView';
 import { StudentProfileView } from './views/student/StudentProfileView';
 import { StudentSkillsView } from './views/student/StudentSkillsView';
 import { StudentProjectsView } from './views/student/StudentProjectsView';
-import { StudentChallengesView } from './views/student/StudentChallengesView';
 import { StudentAssessmentResultsView } from './views/student/StudentAssessmentResultsView';
 import { StudentMentorFeedbackView } from './views/student/StudentMentorFeedbackView';
 import { StudentPassportView } from './views/student/StudentPassportView';
@@ -81,7 +80,6 @@ const MainAppContent: React.FC = () => {
         case 'profile': return <StudentProfileView />;
         case 'skills': return <StudentSkillsView />;
         case 'projects': return <StudentProjectsView />;
-        case 'challenges': return <StudentChallengesView />;
         case 'assessment-results': return <StudentAssessmentResultsView />;
         case 'mentor-feedback': return <StudentMentorFeedbackView />;
         case 'passport': return <StudentPassportView />;

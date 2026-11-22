@@ -51,7 +51,6 @@ export const Sidebar: React.FC = () => {
     { id: 'profile', label: 'My Profile', icon: <User className="w-4 h-4" /> },
     { id: 'skills', label: 'My Skills', icon: <Award className="w-4 h-4" /> },
     { id: 'projects', label: 'My Projects', icon: <FolderGit2 className="w-4 h-4" /> },
-    { id: 'challenges', label: 'Practice Challenges', icon: <Flame className="w-4 h-4" /> },
     { id: 'assessment-results', label: 'Test Results', icon: <FileCheck2 className="w-4 h-4" /> },
     { id: 'mentor-feedback', label: 'Teacher Feedback', icon: <MessageSquareCheck className="w-4 h-4" /> },
     { id: 'passport', label: 'Skills Passport', icon: <QrCode className="w-4 h-4 text-[#FF7138]" /> },

@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { ScrollReveal } from '../../animations/scrolling/ScrollReveal';
-import { StaggerContainer, StaggerItem } from '../../animations/scrolling/StaggerContainer';
-import { GraduationCap, Search, Award, Download, Filter } from 'lucide-react';
+import { 
+  GraduationCap, 
+  Search, 
+  Download, 
+  BookOpenCheck, 
+  CheckCircle2, 
+  Info,
+  UserCheck
+} from 'lucide-react';
 
 export const OrgStudentsView: React.FC = () => {
   const [search, setSearch] = useState('');
+  const [assignmentNotice, setAssignmentNotice] = useState<string | null>(null);
 
-  const students = [
+  const initialStudents = [
     {
       id: 'usr_std_01',
       name: 'Aarav Sharma',
@@ -16,7 +24,8 @@ export const OrgStudentsView: React.FC = () => {
       year: 2027,
       verifiedSkills: 2,
       evidenceRepos: 4,
-      status: 'Active'
+      status: 'Active',
+      assignedTeacher: 'Dr. Elena Rostova'
     },
     {
       id: 'usr_std_02',
@@ -27,7 +36,8 @@ export const OrgStudentsView: React.FC = () => {
       year: 2027,
       verifiedSkills: 3,
       evidenceRepos: 3,
-      status: 'Active'
+      status: 'Active',
+      assignedTeacher: 'Prof. David Vance'
     },
     {
       id: 'usr_std_03',
@@ -38,25 +48,48 @@ export const OrgStudentsView: React.FC = () => {
       year: 2027,
       verifiedSkills: 1,
       evidenceRepos: 2,
-      status: 'Pending Affiliation'
+      status: 'Pending Affiliation',
+      assignedTeacher: 'Dr. Elena Rostova'
     }
   ];
 
-  const filtered = students.filter(s => s.name.toLowerCase().includes(search.toLowerCase()) || s.idNum.toLowerCase().includes(search.toLowerCase()));
+  const [studentList, setStudentList] = useState(initialStudents);
+
+  const facultyOptions = [
+    'Dr. Elena Rostova',
+    'Prof. David Vance',
+    'Unassigned'
+  ];
+
+  const handleAssignTeacher = (studentId: string, studentName: string, teacherName: string) => {
+    setStudentList(prev =>
+      prev.map(s => (s.id === studentId ? { ...s, assignedTeacher: teacherName } : s))
+    );
+    setAssignmentNotice(`Assigned ${studentName} to ${teacherName}. Project submissions will now route to their review desk.`);
+    setTimeout(() => setAssignmentNotice(null), 4000);
+  };
+
+  const filtered = studentList.filter(
+    s =>
+      s.name.toLowerCase().includes(search.toLowerCase()) ||
+      s.idNum.toLowerCase().includes(search.toLowerCase()) ||
+      s.assignedTeacher.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div className="space-y-6 select-none">
+      {/* Header Banner */}
       <ScrollReveal direction="down">
         <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[5px_5px_0px_#191A23] dark:shadow-[5px_5px_0px_#FFD966] p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#3657F0] dark:text-[#FFD966]">
-              ACADEMIC REGISTRY
+              COLLEGE STUDENT DIRECTORY
             </span>
             <h1 className="font-display font-black text-3xl sm:text-4xl text-[#191A23] dark:text-white mt-1">
-              Enrolled Student Body ({students.length})
+              Enrolled Students ({studentList.length})
             </h1>
             <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 font-sans mt-1">
-              Official roster of students affiliated with Apex Institute of Technology.
+              Manage student enrollments and assign dedicated faculty teachers to mentor and review student code.
             </p>
           </div>
 
@@ -70,13 +103,45 @@ export const OrgStudentsView: React.FC = () => {
         </div>
       </ScrollReveal>
 
+      {/* Explanatory Guide: How Teacher Assignment Works */}
+      <ScrollReveal direction="up" delay={0.08}>
+        <div className="bg-[#EEF2FF] dark:bg-[#1A2238] border-2 border-[#3657F0] p-5 shadow-[4px_4px_0px_#3657F0] space-y-3">
+          <div className="flex items-center gap-2 text-[#3657F0] dark:text-[#FFD966] font-mono text-xs font-bold uppercase tracking-wider">
+            <Info className="w-4 h-4 shrink-0" />
+            <span>HOW STUDENTS ARE ASSIGNED TO TEACHERS BY THE COLLEGE</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-sans text-xs text-stone-700 dark:text-stone-300">
+            <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700 space-y-1">
+              <strong className="block text-[#191A23] dark:text-white font-bold font-mono">1. Degree &amp; Track Match</strong>
+              <span>When a student joins, the college admin reviews their branch (e.g. Systems vs AI/ML) and identifies suitable faculty.</span>
+            </div>
+            <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700 space-y-1">
+              <strong className="block text-[#191A23] dark:text-white font-bold font-mono">2. College Admin Assigns</strong>
+              <span>The college admin uses the dropdown below to assign a dedicated teacher to each student.</span>
+            </div>
+            <div className="bg-white dark:bg-[#212330] p-3 border border-stone-300 dark:border-stone-700 space-y-1">
+              <strong className="block text-[#191A23] dark:text-white font-bold font-mono">3. Automated Routing</strong>
+              <span>When the student submits a project, it is sent directly to their assigned teacher's review desk for grading.</span>
+            </div>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      {/* Assignment Success Notification */}
+      {assignmentNotice && (
+        <div className="bg-emerald-50 dark:bg-emerald-950/60 border-2 border-emerald-500 p-3.5 text-xs font-mono font-bold text-emerald-800 dark:text-emerald-200 flex items-center gap-2 shadow-[2px_2px_0px_#191A23]">
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+          <span>{assignmentNotice}</span>
+        </div>
+      )}
+
       {/* Search Bar */}
       <ScrollReveal direction="up" delay={0.1}>
         <div className="bg-[#F8F3E9] dark:bg-[#1E202B] border-2 border-[#191A23] dark:border-[#3B3E54] p-3 flex items-center gap-2">
           <Search className="w-4 h-4 text-stone-500" />
           <input
             type="text"
-            placeholder="Search by student name or roll number (e.g. AIT-CS)..."
+            placeholder="Search by student name, roll number, or assigned teacher..."
             value={search}
             onChange={e => setSearch(e.target.value)}
             className="w-full bg-transparent font-mono text-xs focus:outline-hidden text-[#191A23] dark:text-white"
@@ -84,7 +149,7 @@ export const OrgStudentsView: React.FC = () => {
         </div>
       </ScrollReveal>
 
-      {/* Roster Table */}
+      {/* Roster Table with Assigned Teacher Dropdown */}
       <ScrollReveal direction="up" delay={0.15}>
         <div className="bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-[#3B3E54] shadow-[4px_4px_0px_#191A23] dark:shadow-[4px_4px_0px_#FFD966] overflow-x-auto">
           <table className="w-full text-left font-mono text-xs border-collapse">
@@ -93,8 +158,8 @@ export const OrgStudentsView: React.FC = () => {
                 <th className="p-3.5">Student</th>
                 <th className="p-3.5">Student ID</th>
                 <th className="p-3.5">Degree Program</th>
+                <th className="p-3.5">Assigned Teacher</th>
                 <th className="p-3.5 text-center">Verified Skills</th>
-                <th className="p-3.5 text-center">Repositories</th>
                 <th className="p-3.5 text-right">Status</th>
               </tr>
             </thead>
@@ -109,9 +174,24 @@ export const OrgStudentsView: React.FC = () => {
                     <span className="block font-mono text-[10px] text-stone-500 font-normal">{s.email}</span>
                   </td>
                   <td className="p-3.5 text-stone-600 dark:text-stone-300">{s.idNum}</td>
-                  <td className="p-3.5 text-stone-600 dark:text-stone-300">{s.program} (Class of {s.year})</td>
-                  <td className="p-3.5 text-center font-bold text-emerald-500">{s.verifiedSkills} Tier 3</td>
-                  <td className="p-3.5 text-center font-bold text-[#3657F0] dark:text-[#FFD966]">{s.evidenceRepos}</td>
+                  <td className="p-3.5 text-stone-600 dark:text-stone-300">{s.program}</td>
+                  <td className="p-3.5">
+                    <div className="flex items-center gap-1.5">
+                      <BookOpenCheck className="w-3.5 h-3.5 text-[#3657F0]" />
+                      <select
+                        value={s.assignedTeacher}
+                        onChange={e => handleAssignTeacher(s.id, s.name, e.target.value)}
+                        className="bg-[#F8F3E9] dark:bg-[#1E202B] border border-[#191A23] dark:border-stone-600 px-2 py-1 text-xs font-mono font-bold text-[#191A23] dark:text-white cursor-pointer focus:outline-hidden"
+                      >
+                        {facultyOptions.map(t => (
+                          <option key={t} value={t}>
+                            {t}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </td>
+                  <td className="p-3.5 text-center font-bold text-emerald-500">{s.verifiedSkills} Skills</td>
                   <td className="p-3.5 text-right">
                     <span className={`px-2 py-0.5 text-[10px] font-bold ${s.status === 'Active' ? 'bg-emerald-500 text-white' : 'bg-[#FFD966] text-[#191A23]'}`}>
                       {s.status}

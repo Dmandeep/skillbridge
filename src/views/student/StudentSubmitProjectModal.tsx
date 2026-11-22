@@ -154,20 +154,15 @@ export const StudentSubmitProjectModal: React.FC<StudentSubmitProjectModalProps>
 
                     <div>
                       <label className="block text-xs font-mono font-bold uppercase tracking-wider text-[#191A23] dark:text-white mb-1">
-                        Linked Challenge (Optional)
+                        Live Demo / Web Link (Optional)
                       </label>
-                      <select
-                        value={challengeId}
-                        onChange={e => setChallengeId(e.target.value)}
+                      <input
+                        type="url"
+                        placeholder="https://my-app.vercel.app"
+                        value={liveUrl}
+                        onChange={e => setLiveUrl(e.target.value)}
                         className="w-full bg-white dark:bg-[#212330] border-2 border-[#191A23] dark:border-stone-600 p-2 text-sm font-mono focus:outline-hidden focus:border-[#3657F0]"
-                      >
-                        <option value="">Independent Project (No Challenge)</option>
-                        {challenges.map(c => (
-                          <option key={c.id} value={c.id}>
-                            {c.title} ({c.difficulty})
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
                   </div>
 
